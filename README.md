@@ -68,6 +68,13 @@ O vídeo processado é salvo em:
 ```text
 media/video_result.mp4
 ```
+Para utilizar com outro vídeo ou estacionamento, altere o `INPUT_VIDEO` no `main.py` e execute o `setup_spaces.py` para redefinir as regiões das vagas.
+
+```bash
+python setup_spaces.py
+```
+
+> Isso permite redefinir as regiões das vagas e gerar um novo spaces.pkl.
 
 Durante a execução:
 

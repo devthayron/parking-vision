@@ -3,6 +3,8 @@ import pickle
 import cv2 as cv
 import numpy as np
 
+INPUT_VIDEO = "media/video.mp4"
+OUTPUT_VIDEO = "media/video_result.mp4"
 SPACE_THRESHOLD = 900
 
 
@@ -104,7 +106,7 @@ def create_result_video(input_video, output_video, spaces):
 
         cv.imshow("Parking Vision", frame)
 
-        if cv.waitKey(10) & 0xFF == ord("q"):
+        if cv.waitKey(30) & 0xFF == ord("q"):
             break
 
     video.release()
@@ -117,7 +119,7 @@ def create_result_video(input_video, output_video, spaces):
 def main():
     spaces = load_spaces()
 
-    create_result_video("media/video.mp4", "media/video_result.mp4", spaces)
+    create_result_video(INPUT_VIDEO, OUTPUT_VIDEO, spaces)
 
 
 if __name__ == "__main__":
