@@ -3,19 +3,23 @@ import pickle
 import cv2 as cv
 import numpy as np
 
-INPUT_VIDEO = "media/video.mp4"
-OUTPUT_VIDEO = "media/video_result.mp4"
-
-# Limite para classificar a vaga como livre ou ocupada.
-SPACE_THRESHOLD = 900
-
-# Exibe informações para auxiliar na calibração do threshold.
-DEBUG = False
+from config import DEBUG, INPUT_VIDEO, OUTPUT_VIDEO, SPACE_THRESHOLD, SPACES_FILE
 
 
 def load_spaces():
-    with open("spaces.pkl", "rb") as file:
-        return pickle.load(file)
+    try:
+        with open(SPACES_FILE, "rb") as file:
+            return pickle.load(file)
+    except FileNotFoundError:
+        print(
+            "Error: 'spaces.pkl' not found. Run 'python setup_spaces.py' first to define the parking spaces."
+        )
+        exit(1)
+    except (pickle.UnpicklingError, EOFError):
+        print(
+            "Error: 'spaces.pkl' is corrupted or invalid. Run 'python setup_spaces.py' again to generate a new one."
+        )
+        exit(1)
 
 
 def process_frame(frame):

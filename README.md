@@ -27,6 +27,15 @@ A quantidade de pixels detectados em cada região é utilizada para classificar 
 
 O sistema possui um **modo de debug** que exibe a quantidade de pixels detectados em cada vaga e o valor do `SPACE_THRESHOLD`, auxiliando na calibração do limite utilizado na classificação.
 
+
+## Limitações
+
+Este projeto é uma prova de conceito:
+
+* O `SPACE_THRESHOLD` requer calibração para diferentes cenários.
+* A detecção pode ser afetada por variações de iluminação, sombras e reflexos.
+* Para outros estacionamentos ou enquadramentos, as regiões das vagas precisam ser redefinidas.
+
 ## Tecnologias
 
 * Python

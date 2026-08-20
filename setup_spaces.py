@@ -2,17 +2,23 @@ import pickle
 
 import cv2 as cv
 
-PARKING_IMAGE = "media/parking.png"
-SPACES_QUANTITY = 69
+from config import PARKING_IMAGE, SPACES_FILE
 
 
-def select_spaces(img, quantity):
+def select_spaces(img):
     spaces = []
+    number = 1
 
-    for number in range(1, quantity + 1):
-        space = cv.selectROI(f"Select parking space {number}", img, False)
+    while True:
+        window_name = f"Select parking space {number}"
 
-        cv.destroyWindow(f"Select parking space {number}")
+        space = cv.selectROI(window_name, img, False)
+
+        cv.destroyWindow(window_name)
+
+        # Tecla 'c' cancela e encerra a seleção
+        if space[2] == 0 or space[3] == 0:
+            break
 
         spaces.append(space)
 
@@ -34,20 +40,27 @@ def select_spaces(img, quantity):
             2,
         )
 
+        number += 1
+
     return spaces
 
 
 def save_spaces(spaces):
-    with open("spaces.pkl", "wb") as file:
+    with open(SPACES_FILE, "wb") as file:
         pickle.dump(spaces, file)
 
 
 def main():
     img = cv.imread(PARKING_IMAGE)
 
-    spaces = select_spaces(img, SPACES_QUANTITY)
+    spaces = select_spaces(img)
 
-    save_spaces(spaces)
+    print(f"{len(spaces)} vagas selecionadas.")
+
+    if spaces:
+        save_spaces(spaces)
+    else:
+        print("Nenhuma vaga foi salva.")
 
 
 if __name__ == "__main__":
