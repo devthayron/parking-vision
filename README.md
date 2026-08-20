@@ -25,16 +25,7 @@ Durante o processamento, cada frame é tratado com técnicas de processamento de
 
 A quantidade de pixels detectados em cada região é utilizada para classificar a vaga como livre ou ocupada.
 
-O sistema possui um **modo de debug** que exibe a quantidade de pixels detectados em cada vaga e o valor do `SPACE_THRESHOLD`, auxiliando na calibração do limite utilizado na classificação.
-
-
-## Limitações
-
-Este projeto é uma prova de conceito:
-
-* O `SPACE_THRESHOLD` requer calibração para diferentes cenários.
-* A detecção pode ser afetada por variações de iluminação, sombras e reflexos.
-* Para outros estacionamentos ou enquadramentos, as regiões das vagas precisam ser redefinidas.
+> O sistema possui um modo de debug (`config.py`) que auxilia na calibração do SPACE_THRESHOLD. Esse valor pode exigir ajustes conforme o cenário.
 
 ## Tecnologias
 
@@ -52,6 +43,7 @@ parking-vision/
 │   ├── demo.mp4
 │   ├── parking.png
 │   └── video.mp4
+├── config.py
 ├── main.py
 ├── setup_spaces.py
 ├── spaces.pkl
@@ -80,7 +72,7 @@ O vídeo processado é salvo em:
 media/video_result.mp4
 ```
 
-Para utilizar com outro vídeo ou estacionamento, altere o `INPUT_VIDEO` no `main.py` e execute o `setup_spaces.py` para redefinir as regiões das vagas.
+Para utilizar com outro vídeo ou estacionamento, altere o `INPUT_VIDEO` no `config.py` e execute o `setup_spaces.py` para redefinir as regiões das vagas.
 
 ```bash
 python setup_spaces.py
@@ -94,9 +86,8 @@ Durante a execução:
 
 ## Próximos passos
 
-* Melhorar a detecção em tempo real.
-* Tornar o sistema mais robusto a diferentes condições de iluminação.
-* Testar com diferentes estacionamentos e enquadramentos.
+* Aprimorar a detecção em tempo real.
+* Tornar o sistema mais robusto a diferentes condições de iluminação e cenários.
 * Explorar métodos de detecção baseados em aprendizado de máquina.
 
 ## Autor
@@ -104,3 +95,7 @@ Durante a execução:
 **Thayron Higlânder**
 
 LinkedIn: [https://www.linkedin.com/in/thayron-higlander](https://www.linkedin.com/in/thayron-higlander)
+
+## Licença
+
+Este projeto está sob a licença [MIT](LICENSE).
