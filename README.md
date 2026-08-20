@@ -23,7 +23,9 @@ As regiões das vagas são definidas previamente utilizando o **OpenCV** e armaz
 
 Durante o processamento, cada frame é tratado com técnicas de processamento de imagens e cada vaga é analisada individualmente.
 
-A quantidade de pixels identificados em cada região é utilizada para classificar a vaga como livre ou ocupada.
+A quantidade de pixels detectados em cada região é utilizada para classificar a vaga como livre ou ocupada.
+
+O sistema possui um **modo de debug** que exibe a quantidade de pixels detectados em cada vaga e o valor do `SPACE_THRESHOLD`, auxiliando na calibração do limite utilizado na classificação.
 
 ## Tecnologias
 
@@ -68,13 +70,14 @@ O vídeo processado é salvo em:
 ```text
 media/video_result.mp4
 ```
+
 Para utilizar com outro vídeo ou estacionamento, altere o `INPUT_VIDEO` no `main.py` e execute o `setup_spaces.py` para redefinir as regiões das vagas.
 
 ```bash
 python setup_spaces.py
 ```
 
-> Isso permite redefinir as regiões das vagas e gerar um novo spaces.pkl.
+> Isso permite redefinir as regiões das vagas e gerar um novo `spaces.pkl`.
 
 Durante a execução:
 

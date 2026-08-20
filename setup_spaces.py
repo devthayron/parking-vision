@@ -2,6 +2,9 @@ import pickle
 
 import cv2 as cv
 
+PARKING_IMAGE = "media/parking.png"
+SPACES_QUANTITY = 69
+
 
 def select_spaces(img, quantity):
     spaces = []
@@ -40,9 +43,9 @@ def save_spaces(spaces):
 
 
 def main():
-    img = cv.imread("media/parking.png")
+    img = cv.imread(PARKING_IMAGE)
 
-    spaces = select_spaces(img, 69)
+    spaces = select_spaces(img, SPACES_QUANTITY)
 
     save_spaces(spaces)
 

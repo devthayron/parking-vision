@@ -5,7 +5,12 @@ import numpy as np
 
 INPUT_VIDEO = "media/video.mp4"
 OUTPUT_VIDEO = "media/video_result.mp4"
+
+# Limite para classificar a vaga como livre ou ocupada.
 SPACE_THRESHOLD = 900
+
+# Exibe informações para auxiliar na calibração do threshold.
+DEBUG = False
 
 
 def load_spaces():
@@ -18,6 +23,7 @@ def process_frame(frame):
 
     blurred_image = cv.GaussianBlur(gray_image, (5, 5), 0)
 
+    # Binariza a imagem considerando a iluminação local.
     threshold_image = cv.adaptiveThreshold(
         blurred_image, 255, cv.ADAPTIVE_THRESH_GAUSSIAN_C, cv.THRESH_BINARY_INV, 25, 16
     )
@@ -31,22 +37,37 @@ def process_frame(frame):
 
 
 def detect_spaces(frame, dilated_image, spaces):
+
     available_spaces = 0
 
     for space_number, (x, y, w, h) in enumerate(spaces, start=1):
         space = dilated_image[y : y + h, x : x + w]
 
+        # Quantidade de pixels detectados na região da vaga.
         count = cv.countNonZero(space)
 
-        cv.putText(
-            frame,
-            str(space_number),
-            (x + 5, y + 20),
-            cv.FONT_HERSHEY_SIMPLEX,
-            0.6,
-            (255, 255, 255),
-            2,
-        )
+        if not DEBUG:
+            cv.putText(
+                frame,
+                str(space_number),
+                (x + 5, y + 20),
+                cv.FONT_HERSHEY_SIMPLEX,
+                0.6,
+                (255, 255, 255),
+                2,
+            )
+
+        else:
+            # Mostra o valor usado na calibração do SPACE_THRESHOLD.
+            cv.putText(
+                frame,
+                str(count),
+                (x + 5, y + 20),
+                cv.FONT_HERSHEY_SIMPLEX,
+                0.6,
+                (255, 255, 255),
+                2,
+            )
 
         if count <= SPACE_THRESHOLD:
             cv.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
@@ -71,6 +92,17 @@ def draw_counter(frame, available_spaces, total_spaces):
         (255, 255, 255),
         5,
     )
+
+    if DEBUG:
+        cv.putText(
+            frame,
+            f"THRESHOLD:{SPACE_THRESHOLD}",
+            (700, 45),
+            cv.FONT_HERSHEY_SIMPLEX,
+            1.5,
+            (255, 0, 0),
+            5,
+        )
 
 
 def create_result_video(input_video, output_video, spaces):
@@ -105,6 +137,9 @@ def create_result_video(input_video, output_video, spaces):
         output.write(frame)
 
         cv.imshow("Parking Vision", frame)
+
+        if DEBUG:
+            cv.imshow("Parking Vision resultado da função dilated_image", dilated_image)
 
         if cv.waitKey(30) & 0xFF == ord("q"):
             break
