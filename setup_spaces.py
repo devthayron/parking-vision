@@ -16,24 +16,25 @@ def select_spaces(img):
 
         cv.destroyWindow(window_name)
 
-        # Tecla 'c' cancela e encerra a seleção
+        # Tecla 'c' cancela e encerra a seleção.
         if space[2] == 0 or space[3] == 0:
             break
 
-        spaces.append(space)
+        x, y, w, h = space
 
-        cv.rectangle(
-            img,
-            (space[0], space[1]),
-            (space[0] + space[2], space[1] + space[3]),
-            (255, 0, 0),
-            2,
+        spaces.append(
+            {
+                "id": number,
+                "bbox": (x, y, w, h),
+            }
         )
+
+        cv.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
 
         cv.putText(
             img,
             str(number),
-            (space[0] + 5, space[1] + 20),
+            (x + 5, y + 20),
             cv.FONT_HERSHEY_SIMPLEX,
             0.6,
             (255, 255, 255),
@@ -59,6 +60,7 @@ def main():
 
     if spaces:
         save_spaces(spaces)
+        print(f"Vagas salvas em: {SPACES_FILE}")
     else:
         print("Nenhuma vaga foi salva.")
 

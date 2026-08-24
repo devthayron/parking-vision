@@ -1,6 +1,6 @@
 # Sistema de Detecção de Vagas em Estacionamentos com Visão Computacional
 
-Sistema desenvolvido em Python capaz de **detectar automaticamente vagas livres e ocupadas em um estacionamento**.
+Sistema desenvolvido em Python capaz de identificar quais vagas estão livres ou ocupadas em um estacionamento.
 
 ## 🎥 Demonstração
 
@@ -25,13 +25,13 @@ Durante o processamento, cada frame é tratado com técnicas de processamento de
 
 A quantidade de pixels detectados em cada região é utilizada para classificar a vaga como livre ou ocupada.
 
-> O sistema possui um modo de debug (`config.py`) que auxilia na calibração do SPACE_THRESHOLD. Esse valor pode exigir ajustes conforme o cenário.
+> O sistema possui um modo de debug (`config.py`) que auxilia na calibração do `SPACE_THRESHOLD`. Esse valor pode exigir ajustes conforme o cenário.
 
 ## Tecnologias
 
-* Python
-* OpenCV
-* NumPy
+- Python
+- OpenCV
+- NumPy
 
 ## 📁 Estrutura do projeto
 
@@ -44,11 +44,13 @@ parking-vision/
 │   ├── parking.png
 │   └── video.mp4
 ├── config.py
+├── detector.py
 ├── main.py
 ├── setup_spaces.py
 ├── spaces.pkl
 ├── requirements.txt
-└── README.md
+├── README.md
+└── LICENSE
 ```
 
 ## Como executar
@@ -58,8 +60,12 @@ git clone https://github.com/devthayron/parking-vision.git
 cd parking-vision
 
 python3 -m venv venv
-source venv/bin/activate    # Linux / macOS
-# venv\Scripts\activate     # Windows
+
+# Linux / macOS
+source venv/bin/activate
+
+# Windows
+# venv\Scripts\activate
 
 pip install -r requirements.txt
 
@@ -72,7 +78,7 @@ O vídeo processado é salvo em:
 media/video_result.mp4
 ```
 
-Para utilizar com outro vídeo ou estacionamento, altere o `INPUT_VIDEO` no `config.py` e execute o `setup_spaces.py` para redefinir as regiões das vagas.
+Para utilizar outro vídeo ou estacionamento, altere o `INPUT_VIDEO` no `config.py` e execute o `setup_spaces.py` para redefinir as regiões das vagas:
 
 ```bash
 python setup_spaces.py
@@ -82,13 +88,13 @@ python setup_spaces.py
 
 Durante a execução:
 
-* `Q` — encerra a aplicação.
+- `Q` — encerra a aplicação.
 
 ## Próximos passos
 
-* Aprimorar a detecção em tempo real.
-* Tornar o sistema mais robusto a diferentes condições de iluminação e cenários.
-* Explorar métodos de detecção baseados em aprendizado de máquina.
+- Aprimorar a detecção em tempo real.
+- Tornar o sistema mais robusto a diferentes condições de iluminação e cenários.
+- Explorar métodos de detecção baseados em aprendizado de máquina.
 
 ## Autor
 
