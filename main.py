@@ -3,7 +3,7 @@ import pickle
 import cv2 as cv
 
 from config import DEBUG, INPUT_VIDEO, OUTPUT_VIDEO, SPACES_FILE
-from detector import OccupancyDetector
+from detector import create_detector
 
 
 def load_spaces():
@@ -54,7 +54,7 @@ def create_result_video(input_video, output_video, spaces):
     codec = cv.VideoWriter_fourcc(*"mp4v")
     output = cv.VideoWriter(output_video, codec, fps, (width, height))
 
-    detector = OccupancyDetector()
+    detector = create_detector()
     total_spaces = len(spaces)
 
     while True:

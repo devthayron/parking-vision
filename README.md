@@ -1,14 +1,12 @@
 # Sistema de Detecção de Vagas em Estacionamentos com Visão Computacional
 
-Sistema desenvolvido em Python capaz de identificar quais vagas estão livres ou ocupadas em um estacionamento.
+Projeto desenvolvido em Python para identificar quais vagas estão livres ou ocupadas em um estacionamento, utilizando técnicas de processamento de imagens com OpenCV.
 
 ## 🎥 Demonstração
 
 ![Demonstração do Parking Vision](assets/demo.gif)
 
 O vídeo do estacionamento utilizado como entrada foi obtido a partir do [Kaggle](https://www.kaggle.com/datasets/iasadpanwhar/parking-lot-detection-counter).
-
-A detecção e classificação das vagas foram desenvolvidas neste projeto utilizando técnicas de processamento de imagens com OpenCV.
 
 Cada vaga é numerada e classificada visualmente como:
 
@@ -25,7 +23,7 @@ Durante o processamento, cada frame é tratado com técnicas de processamento de
 
 A quantidade de pixels detectados em cada região é utilizada para classificar a vaga como livre ou ocupada.
 
-> O sistema possui um modo de debug (`config.py`) que auxilia na calibração do `SPACE_THRESHOLD`. Esse valor pode exigir ajustes conforme o cenário.
+> O sistema possui um modo de debug `(config.py)` que auxilia na calibração do `SPACE_THRESHOLD`, valor que pode exigir ajustes conforme variações de iluminação, sombra ou clima no cenário analisado.
 
 ## Tecnologias
 
