@@ -6,11 +6,15 @@ from config import DEBUG, DETECTION_METHOD, SPACE_THRESHOLD
 
 class OccupancyDetector:
     """
-    Detecta ocupação das vagas através da quantidade
-    de pixels detectados na região da vaga.
+    Detects parking space occupancy based on the number
+    of detected pixels within each parking space.
     """
 
     def process_frame(self, frame):
+        """
+        Applies image processing techniques to prepare the frame
+        for parking space occupancy analysis.
+        """
         gray_image = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
 
         blurred_image = cv.GaussianBlur(gray_image, (5, 5), 0)
@@ -32,6 +36,12 @@ class OccupancyDetector:
         return dilated_image
 
     def detect(self, frame, spaces):
+        """
+        Analyzes each parking space and classifies it as available
+        or occupied based on the number of detected pixels.
+
+        Returns the number of available spaces and the processed frame.
+        """
         processed_frame = self.process_frame(frame)
 
         available_spaces = 0

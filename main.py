@@ -1,4 +1,5 @@
 import pickle
+import sys
 
 import cv2 as cv
 
@@ -16,14 +17,14 @@ def load_spaces():
             "Error: 'spaces.pkl' not found. "
             "Run 'python setup_spaces.py' first to define the parking spaces."
         )
-        exit(1)
+        sys.exit(1)
 
     except (pickle.UnpicklingError, EOFError):
         print(
             "Error: 'spaces.pkl' is corrupted or invalid. "
             "Run 'python setup_spaces.py' again to generate a new one."
         )
-        exit(1)
+        sys.exit(1)
 
 
 def draw_counter(frame, available_spaces, total_spaces):
@@ -41,6 +42,10 @@ def draw_counter(frame, available_spaces, total_spaces):
 
 
 def create_result_video(input_video, output_video, spaces):
+    """
+    Processes the input video, detects parking space occupancy,
+    and generates a result video.
+    """
     video = cv.VideoCapture(input_video)
 
     if not video.isOpened():

@@ -3,11 +3,11 @@ OUTPUT_VIDEO = "media/video_result.mp4"
 PARKING_IMAGE = "media/parking.png"
 SPACES_FILE = "spaces.pkl"
 
-# Método usado para determinar se uma vaga está ocupada.
+# Method used to determine whether a parking space is occupied.
 DETECTION_METHOD = "pixel"
 
-# Limite para classificar a vaga como livre ou ocupada.
+# Threshold used to classify a parking space as available or occupied.
 SPACE_THRESHOLD = 1400
 
-# Exibe informações para auxiliar na calibração do threshold.
+# Displays information to assist with threshold calibration.
 DEBUG = False

@@ -19,7 +19,7 @@ O sistema também exibe a quantidade de vagas disponíveis.
 
 As regiões das vagas são definidas previamente utilizando o **OpenCV** e armazenadas no arquivo `spaces.pkl`, que já acompanha o projeto com as coordenadas configuradas.
 
-Durante o processamento, cada frame é tratado com técnicas de processamento de imagens e cada vaga é analisada individualmente.
+Durante o processamento, cada frame passa por etapas de processamento de imagens, e cada vaga é analisada individualmente.
 
 A quantidade de pixels detectados em cada região é utilizada para classificar a vaga como livre ou ocupada.
 

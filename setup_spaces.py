@@ -6,6 +6,10 @@ from config import PARKING_IMAGE, SPACES_FILE
 
 
 def select_spaces(img):
+    """
+    Allows the user to manually select parking spaces
+    and returns their bounding boxes.
+    """
     spaces = []
     number = 1
 
@@ -16,7 +20,7 @@ def select_spaces(img):
 
         cv.destroyWindow(window_name)
 
-        # Tecla 'c' cancela e encerra a seleção.
+        # Press 'c' to cancel and exit the selection.
         if space[2] == 0 or space[3] == 0:
             break
 
@@ -56,13 +60,13 @@ def main():
 
     spaces = select_spaces(img)
 
-    print(f"{len(spaces)} vagas selecionadas.")
+    print(f"{len(spaces)} parking spaces selected.")
 
     if spaces:
         save_spaces(spaces)
-        print(f"Vagas salvas em: {SPACES_FILE}")
+        print(f"Parking spaces saved to: {SPACES_FILE}")
     else:
-        print("Nenhuma vaga foi salva.")
+        print("No parking spaces were saved.")
 
 
 if __name__ == "__main__":
